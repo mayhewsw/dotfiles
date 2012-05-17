@@ -13,7 +13,7 @@
 
 
 (setq default-directory "/home/stephen/" )
-
+;test
 
 (setq inhibit-startup-message 't)
 

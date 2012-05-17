@@ -1,0 +1,6 @@
+[user]
+	email = mayhewsw@rose-hulman.edu
+	name = Stephen Mayhew
+[alias]
+    ci = commit
+    st = status    
