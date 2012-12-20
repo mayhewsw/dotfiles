@@ -1,6 +1,8 @@
 [user]
-	email = mayhewsw@rose-hulman.edu
+	email = swm.mayhew@gmail.com
 	name = Stephen Mayhew
+[core]
+	editor = emacs
 [alias]
-    ci = commit
-    st = status    
+	ci = commit
+	st = status    
