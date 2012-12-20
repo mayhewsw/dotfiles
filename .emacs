@@ -144,29 +144,10 @@
 
 (global-set-key (kbd "C-S-f") 'format-file)
 
-(defun num-theory-mode ()
-    (interactive)
-    (split-window-horizontally)
-    (other-window 1)
-    (setq default-directory "/home/stephen/Documents/Classes/Spring2011/NumberTheory/")
-    (term "/bin/bash")
-)
-
-(global-set-key (kbd "C-S-n") 'num-theory-mode)
 
 ;;Setting up tabbar
 (require 'tabbar)
 (tabbar-mode)
-
-(defun copy-line-to-other-buffer ()
-  (interactive)
-  (kill-whole-line)
-  (yank)
-  (other-window 1)
-  (end-of-buffer)
-  (yank))
-
-(global-set-key (kbd "C-x X") 'copy-line-to-other-buffer)
 
 ;(desktop-save-mode 1)
 
