@@ -98,16 +98,8 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
-#cd /home/stephen/
-
 # Set some enviroment variables
 export EDITOR=emacs
-export NLP=/home/stephen/Documents/Classes/Fall2011/NLP
-export MRD=/home/stephen/Documents/Classes/Fall2011/NLP/resolver-export/MyReverbData/
-export JP=/home/stephen/Documents/Classes/Spring2012/CSSE404/csse404-201230-javapyc/
-export THESIS=/home/stephen/Documents/Classes/Fall2011/NLP/MyPaper/
 
 #export TERM=xterm-mono
 export TERM=xterm-256color
-
-alias homeconfig='git --git-dir=/home/stephen/.homeconfig.git/ --work-tree=/home/stephen'
