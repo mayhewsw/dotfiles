@@ -50,7 +50,9 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+    #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+    #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u\[\033[00m\]:\[\033[01;34m\]\W\[\033[00m\]\$ '
+    PS1='\[\e[0;33m\]\u\[\e[m\]:\[\e[0;34m\]\W\[\e[m\] \$ ' 
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
@@ -78,9 +80,12 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 # some more ls aliases
+alias ls='ls -B --color=auto' # don't show backups
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
+alias rm='rm -I' # confirm if more than three files are to be removed
+alias emacs='emacs -nw'
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
@@ -103,3 +108,7 @@ export EDITOR=emacs
 
 #export TERM=xterm-mono
 export TERM=xterm-256color
+
+#export 
+export P=/home/stephen/Documents/CogComp/TrustworthinessIE/repository/TrustworthyValidator
+alias p="cd $P"
