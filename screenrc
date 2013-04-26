@@ -1,0 +1,37 @@
+#screen -t rtorrent rtorrent
+#screen -t irssi irssi
+#screen -t centerim centerim
+#screen -t ncmpc ncmpc -c
+screen -t bash
+screen -t bash
+altscreen on
+term screen-256color
+bind ',' prev
+bind '.' next
+
+# for pietty
+bindkey ^[[1;5D prev
+bindkey ^[[1;5C next
+
+# for ubuntu 
+#bindkey ^[[D prev
+#bindkey ^[[C next
+
+# for mac
+bindkey \033[5D prev
+bindkey \033[5C next
+
+startup_message off
+vbell off
+defscrollback 20000
+#bind b encoding big5 utf8
+#bind u encoding utf8 utf8
+#defencoding utf8
+
+#change the hardstatus settings to give an window list at the bottom of the
+##screen, with the time and date and with the current window highlighted
+hardstatus alwayslastline
+##hardstatus string '%{= kG}%-Lw%{= kW}%50> %n%f* %t%{= kG}%+Lw%< %{= kG}%-=%c:%s%{-}'
+hardstatus string '%{= kG}[ %{G}%H %{g}][%= %{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{B} %m-%d %{W}%c %{g}]'
+#
+#Source
