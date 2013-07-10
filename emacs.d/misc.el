@@ -86,3 +86,31 @@
 
 (define-key global-map (kbd "RET") 'newline-and-indent)
 
+(setq debug-on-error t)
+
+(defun trim-string (string)
+  "Remove white spaces in beginning and ending of STRING.
+White space here is any of: space, tab, emacs newline (line feed, ASCII 10)."
+  (replace-regexp-in-string "\\`[ \t\n]*" "" (replace-regexp-in-string "[ \t\n]*\\'" "" string))
+  )
+
+;; Define notes functionality
+(defun new ()
+  (interactive)
+  (let ((fname  (read-from-minibuffer "Filename: ")))
+    (let ((fullpath (trim-string (shell-command-to-string (concat "new " fname)))))
+      (if (string-match "whoops" fullpath)
+          (message fullpath)
+        (progn
+          (find-file fullpath)
+          (goto-char (point-max)))))))
+
+
+;; Fancier find-name-dired
+(defun my-f-n-d ()
+  (let ((pattern (read-from-minibuffer "File Pattern: ")))
+    (find-name-dired
+     (concat (car (split-string buffer-file-name "/src/")) "/src/")
+     (concat pattern "*"))))
+
+(global-set-key (kbd "C-x c") 'my-f-n-d) 

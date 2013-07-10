@@ -24,11 +24,16 @@
       (font-lock-warning-face ((t (:foreground "Red" :bold t))))
       )))
 (provide 'stephen-color-theme)
-(if (window-system)
-    (progn
-      (require 'color-theme)
-      (setq color-theme-is-global t)
-      (stephen-color-theme)))
+
+(require 'color-theme)
+(setq color-theme-is-global t)
+(stephen-color-theme)
+
+;; (if (window-system)
+;;     (progn
+;;       (require 'color-theme)
+;;       (setq color-theme-is-global t)
+;;       (stephen-color-theme)))
 					; (color-theme-dark-laptop)
 					; also try taylor
 (custom-set-variables
@@ -44,7 +49,8 @@
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
  '(default ((t (:inherit nil :stipple nil :background "black" :foreground "white" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 105 :width normal :foundry "unknown" :family "DejaVu Sans Mono")))))
- 
+
+
 ; this is to make emacs start up bigger.
 (defun set-frame-size-according-to-resolution ()
   (interactive)

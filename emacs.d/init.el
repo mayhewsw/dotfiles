@@ -1,6 +1,9 @@
 ;; init.el
 ;; This is the where the magic all begins
 
+;; (add-to-list 'load-path "~/.emacs.d/")
+
+
 (defconst user-init-dir
   (cond ((boundp 'user-emacs-directory)
          user-emacs-directory)
@@ -18,7 +21,8 @@
 (load-user-file "misc.el")
 (load-user-file "cogcomp.el")
 (load-user-file "appearance.el")
-(load-user-file "org.el")
+(load-user-file "loadelget.el")
+(load-user-file "myorg.el")
 
 (custom-set-variables
   ;; custom-set-variables was added by Custom.
@@ -36,7 +40,9 @@
  '(default ((t (:inherit nil :stipple nil :background "black" :foreground "white" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 105 :width normal :foundry "unknown" :family "DejaVu Sans Mono"))))
  '(org-level-2 ((t (:inherit outline-2)))))
 
-(add-to-list 'load-path "~/.emacs.d/")
-(require 'minimap)
+;; (require 'minimap)
 ;; (load "minimap.el")
 
+(add-to-list 'load-path "/home/stephen/.emacs.d/scala-dist/tool-support/src/emacs")
+
+(require 'scala-mode-auto)
