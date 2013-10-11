@@ -109,6 +109,3 @@ export EDITOR=emacs
 #export TERM=xterm-mono
 export TERM=xterm-256color
 
-#export 
-export P=/home/stephen/Documents/CogComp/TrustworthinessIE/repository/TrustworthyValidator
-alias p="cd $P"
