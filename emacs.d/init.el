@@ -8,7 +8,6 @@
          user-init-directory)
         (t "~/.emacs.d/")))
 
-
 (defun load-user-file (file)
   (interactive "f")
   "Load a file in current user's configuration directory"
@@ -20,6 +19,7 @@
 (load-user-file "appearance.el")
 
 (add-to-list 'load-path "~/.emacs.d/")
+
 (if (locate-file "machine-specific.el" load-path)
     (load-user-file "machine-specific.el"))
 
