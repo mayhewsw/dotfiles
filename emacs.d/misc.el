@@ -11,31 +11,7 @@
 ; Find the function behind the command: C-h k                                   |
 ;################################################################################
 
-
-
-;; (setq initial-scratch-message
-
-;; "oooooo   oooooo     oooo           oooo                                                  
-;;  `888.    `888.     .8'            `888                                                  
-;;   `888.   .8888.   .8'    .ooooo.   888   .ooooo.   .ooooo.  ooo. .oo.  .oo.    .ooooo.
-;;    `888  .8'`888. .8'    d88' `88b  888  d88' `'Y8 d88' `88b `888P'Y88bP'Y88b  d88' `88b  
-;;     `888.8'  `888.8'     888ooo888  888  888       888   888  888   888   888  888ooo888 
-;;      `888'    `888'      888    .o  888  888   .o8 888   888  888   888   888  888    .o 
-;;       `8'      `8'       `Y8bod8P' o888o `Y8bod8P' `Y8bod8P' o888o o888o o888o `Y8bod8P' 
-      
-      
-;;                      oooooooooooo                                                
-;;   .o8                `888'     `8                                                
-;; .o888oo  .ooooo.      888         ooo. .oo.  .oo.    .oooo.    .ooooo.   .oooo.o 
-;;   888   d88' `88b     888oooo8    `888P'Y88bP'Y88b  `P  )88b  d88' `'Y8 d88(  '8 
-;;   888   888   888     888    '     888   888   888   .oP'888  888       `'Y88b.  
-;;   888 . 888   888     888       o  888   888   888  d8(  888  888   .o8 o.  )88b 
-;;   '888' `Y8bod8P'    o888ooooood8 o888o o888o o888o `Y888''8o `Y8bod8P' 8''888P'
-
-
-;; You probably want to search for a file. C-x C-f
-
-;; ")
+(add-to-list 'load-path "~/color-theme-stuff/color-theme-6.6.0")
 
 (setq inhibit-splash-screen t)
 (setq default-directory "/home/stephen/" )
@@ -55,6 +31,10 @@
 ;; Supposedly this set tabs to spaces
 (setq-default indent-tabs-mode nil)
 
+(autoload 'linum-mode "linum" "toggle line numbers on/off" t) 
+(global-set-key (kbd "C-<f5>") 'linum-mode)
+(global-linum-mode 1)
+
 ;; Define Ctrl-Shift-F as tab the whole file, which 
 ;; formats it.
 (defun format-file ()
@@ -67,11 +47,13 @@
 (require 'tabbar)
 (tabbar-mode)
 
-;; Taken from http://stackoverflow.com/questions/2855378/ropemacs-usage-tutorial
-;;(add-to-list 'load-path "~/.emacs.d/auto-complete-1.2")
-;;(autoload 'python-mode "python-mode" "Python Mode." t)
+;; Different modes
 (add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
 (add-to-list 'auto-mode-alist '("\\.m\\'" . matlab-mode))
+(add-to-list
+ 'auto-mode-alist
+ '("\\.lbj$" . java-mode))
+
 
 ;; comment on C-/
 (defun comment-or-uncomment-region-or-line ()
@@ -105,12 +87,68 @@ White space here is any of: space, tab, emacs newline (line feed, ASCII 10)."
           (find-file fullpath)
           (goto-char (point-max)))))))
 
+(defun open ()
+  (interactive)
+  (find-file "~/Documents/notes")
+  )
+
+
+;;; -------------------- BEGIN 'LATEST' CODE ---------------------------------
+(defun getFirst3 (lst)
+  (list (car lst)
+        (car (cdr lst))
+        (car (cdr (cdr lst)))))
+
+(defun getDateScore (s)
+  (let ((lst (mapcar 'string-to-number (getFirst3 (split-string s (regexp-quote "."))))))
+    (setcar lst (* 30 (car lst)))
+    (apply '+ lst)))
+
+;; if first is later than the second, return true, otherwise nil
+(defun compare (e1 e2)
+  (> (getDateScore e1) (getDateScore e2)))
+
+;To load python templates 
+(add-hook 'find-file-hooks 'maybe-load-template)
+(defun maybe-load-template ()
+  (interactive)
+  (when (and 
+         (string-match "\\.py$" (buffer-file-name))
+         (eq 1 (point-max)))
+    (insert-file "~/.emacs.d/templates/template.py")))
+
+;; swap the first and second elements
+(defun swapfirst (lst)
+  (cons (cadr lst) (cons (car lst) (cddr lst)))
+  )
+
+;; recursive function
+(defun getLatest (files)
+  (if (cdr files)
+      (if (compare (car files) (cadr files)) ; car later than cadr
+          (getLatest (cdr (swapfirst files)))
+        (getLatest (cdr files)))
+    (car files))) ; return the only element left
+    
+
+;; Get the latest meeting notes from dan
+(defun latest ()
+  (interactive)
+  (let ((files (directory-files "~/Documents/notes/" nil ".Meeting.*Dan.*[^~#]$")))
+    (find-file (concat "~/Documents/notes/" (getLatest files)))
+    ))
+;;; -------------------- END 'LATEST' CODE ---------------------------------
 
 ;; Fancier find-name-dired
 (defun my-f-n-d ()
+  (interactive)
   (let ((pattern (read-from-minibuffer "File Pattern: ")))
     (find-name-dired
      (concat (car (split-string buffer-file-name "/src/")) "/src/")
      (concat pattern "*"))))
 
-(global-set-key (kbd "C-x c") 'my-f-n-d) 
+(global-set-key (kbd "C-x c") 'my-f-n-d)
+
+;; indent pragmas in C/C++
+(c-set-offset (quote cpp-macro) 0 nil)
+

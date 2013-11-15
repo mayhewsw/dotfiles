@@ -29,13 +29,6 @@
 (setq color-theme-is-global t)
 (stephen-color-theme)
 
-;; (if (window-system)
-;;     (progn
-;;       (require 'color-theme)
-;;       (setq color-theme-is-global t)
-;;       (stephen-color-theme)))
-					; (color-theme-dark-laptop)
-					; also try taylor
 (custom-set-variables
   ;; custom-set-variables was added by Custom.
   ;; If you edit it by hand, you could mess it up, so be careful.

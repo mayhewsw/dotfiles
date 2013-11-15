@@ -5,16 +5,15 @@
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
-
 # Source global definitions
 if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
 fi
 
 # Source local definitions
-if [ -f ~/.bash_machine_specific ]; then
-    . ~/.bash_machine_specific
-fi
+#if [ -f ~/.bash_machine_specific ]; then
+#    . ~/.bash_machine_specific
+#fi
 
 # User specific aliases and functions
 # don't put duplicate lines in the history. See bash(1) for more options
@@ -54,9 +53,9 @@ if [ -n "$force_color_prompt" ]; then
 	# We have color support; assume it's compliant with Ecma-48
 	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
 	# a case would tend to support setf rather than setaf.)
-	color_prompt=yes
+	    color_prompt=yes
     else
-	color_prompt=
+	    color_prompt=
     fi
 fi
 
@@ -71,20 +70,16 @@ unset color_prompt force_color_prompt
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
-xterm*|rxvt*)
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-    ;;
-*)
-    ;;
+    xterm*|rxvt*)
+        PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+        ;;
+    *)
+        ;;
 esac
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
-
     alias ll='ls -la --color=auto'
     alias ls='ls --color=auto'
     alias grep='grep --color=auto'
@@ -93,7 +88,6 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 # some more ls aliases
-
 alias rm='rm -I' # confirm if more than three files are to be removed
 alias emacs='emacs -nw'
 

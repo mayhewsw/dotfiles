@@ -21,7 +21,6 @@
 (load-user-file "misc.el")
 (load-user-file "cogcomp.el")
 (load-user-file "appearance.el")
-(load-user-file "loadelget.el")
 (load-user-file "myorg.el")
 
 (custom-set-variables
@@ -40,9 +39,5 @@
  '(default ((t (:inherit nil :stipple nil :background "black" :foreground "white" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 105 :width normal :foundry "unknown" :family "DejaVu Sans Mono"))))
  '(org-level-2 ((t (:inherit outline-2)))))
 
-;; (require 'minimap)
-;; (load "minimap.el")
-
-(add-to-list 'load-path "/home/stephen/.emacs.d/scala-dist/tool-support/src/emacs")
-
-(require 'scala-mode-auto)
+;; annoying hack for emacs in screen on ubuntu
+(global-set-key (kbd "<select>") 'end-of-line)
