@@ -11,6 +11,11 @@ if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
 fi
 
+# Source local definitions
+if [ -f ~/.bash_machine_specific ]; then
+    . ~/.bash_machine_specific
+fi
+
 # User specific aliases and functions
 # don't put duplicate lines in the history. See bash(1) for more options
 # ... or force ignoredups and ignorespace
