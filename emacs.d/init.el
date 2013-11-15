@@ -18,7 +18,6 @@
 (load-user-file "misc.el")
 (load-user-file "cogcomp.el")
 (load-user-file "appearance.el")
-(load-user-file "org.el")
 
 (add-to-list 'load-path "~/.emacs.d/")
 (if (locate-file "machine-specific.el" load-path)
@@ -29,7 +28,6 @@
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
- '(org-agenda-files (quote ("~/org/todo.org")))
  '(show-paren-mode t)
  '(tab-width 4))
 (custom-set-faces
