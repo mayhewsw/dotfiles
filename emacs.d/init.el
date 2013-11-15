@@ -1,9 +1,6 @@
 ;; init.el
 ;; This is the where the magic all begins
 
-;; (add-to-list 'load-path "~/.emacs.d/")
-
-
 (defconst user-init-dir
   (cond ((boundp 'user-emacs-directory)
          user-emacs-directory)
@@ -23,6 +20,11 @@
 (load-user-file "appearance.el")
 (load-user-file "org.el")
 
+(add-to-list 'load-path "~/.emacs.d/")
+
+(if (locate-file "machine-specific.el" load-path)
+    (load-user-file "machine-specific.el"))
+
 (custom-set-variables
   ;; custom-set-variables was added by Custom.
   ;; If you edit it by hand, you could mess it up, so be careful.
@@ -41,3 +43,4 @@
 
 ;; annoying hack for emacs in screen on ubuntu
 (global-set-key (kbd "<select>") 'end-of-line)
+

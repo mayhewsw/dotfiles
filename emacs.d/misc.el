@@ -43,10 +43,6 @@
   (indent-for-tab-command))
 (global-set-key (kbd "C-S-f") 'format-file)
 
-;;Setting up tabbar
-(require 'tabbar)
-(tabbar-mode)
-
 ;; Different modes
 (add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
 (add-to-list 'auto-mode-alist '("\\.m\\'" . matlab-mode))
