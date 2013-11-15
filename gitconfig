@@ -1,0 +1,9 @@
+[user]
+	name = Stephen Mayhew
+	email = swm.mayhew@gmail.com
+[core]
+	editor = emacs
+
+[alias]
+	ci = commit
+	st = status

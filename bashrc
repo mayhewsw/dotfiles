@@ -5,6 +5,13 @@
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+	. /etc/bashrc
+fi
+
+# User specific aliases and functions
 # don't put duplicate lines in the history. See bash(1) for more options
 # ... or force ignoredups and ignorespace
 HISTCONTROL=ignoredups:ignorespace
@@ -27,7 +34,6 @@ shopt -s checkwinsize
 if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
 fi
-
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
     xterm-color) color_prompt=yes;;
@@ -74,16 +80,15 @@ if [ -x /usr/bin/dircolors ]; then
     #alias dir='dir --color=auto'
     #alias vdir='vdir --color=auto'
 
+    alias ll='ls -la --color=auto'
+    alias ls='ls --color=auto'
     alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
 fi
 
 # some more ls aliases
-alias ls='ls -B --color=auto' # don't show backups
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
+
 alias rm='rm -I' # confirm if more than three files are to be removed
 alias emacs='emacs -nw'
 
@@ -108,7 +113,3 @@ export EDITOR=emacs
 
 #export TERM=xterm-mono
 export TERM=xterm-256color
-
-#export 
-export P=/home/stephen/Documents/CogComp/TrustworthinessIE/repository/TrustworthyValidator
-alias p="cd $P"
