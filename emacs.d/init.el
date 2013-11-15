@@ -21,7 +21,6 @@
 (load-user-file "org.el")
 
 (add-to-list 'load-path "~/.emacs.d/")
-
 (if (locate-file "machine-specific.el" load-path)
     (load-user-file "machine-specific.el"))
 
