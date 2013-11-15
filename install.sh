@@ -22,11 +22,15 @@ CURRENT=`pwd`
 
 # move any existing dotfiles in homedir to dotfiles_old directory, then create symlinks
 for file in $files; do
-        echo "Moving any existing dotfiles from ~ to $olddir"
-    mv ~/.$file ~/dotfiles_old/
-        echo "Creating symlink to $file in home directory."
+    echo "Moving any existing dotfiles from ~ to $olddir"
+    mv ~/.$file ~/dotfiles_old/$file
+    echo "Creating symlink to $file in home directory."
     ln -s $CURRENT/$file ~/.$file
-    done
+done
 
 # do the same for .emacs.d
+echo "Moving current .emacs.d to .emacs.d.old..."
 mv ~/.emacs.d ~/.emacs.d.old
+echo "Making symlink for current version of .emacs.d..."
+ln -s $CURRENT/emacs.d ~/.emacs.d
+echo "done"

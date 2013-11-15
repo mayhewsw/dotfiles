@@ -21,7 +21,7 @@
 (load-user-file "misc.el")
 (load-user-file "cogcomp.el")
 (load-user-file "appearance.el")
-(load-user-file "myorg.el")
+(load-user-file "org.el")
 
 (custom-set-variables
   ;; custom-set-variables was added by Custom.
