@@ -81,6 +81,7 @@ White space here is any of: space, tab, emacs newline (line feed, ASCII 10)."
           (message fullpath)
         (progn
           (find-file fullpath)
+          (turn-on-auto-fill)
           (goto-char (point-max)))))))
 
 (defun open ()
