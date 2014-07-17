@@ -43,13 +43,14 @@
   (indent-for-tab-command))
 (global-set-key (kbd "C-S-f") 'format-file)
 
+(autoload 'matlab-mode "matlab" "Matlab Editing Mode" t)
+
 ;; Different modes
 (add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
 (add-to-list 'auto-mode-alist '("\\.m\\'" . matlab-mode))
-(add-to-list
- 'auto-mode-alist
- '("\\.lbj$" . java-mode))
-
+(add-to-list 'auto-mode-alist '("\\.php\\'" . html-mode))
+(add-to-list 'auto-mode-alist '("\\.lbj$" . java-mode))
+(add-to-list 'auto-mode-alist '("\\.txt$" . conf-mode))
 
 ;; comment on C-/
 (defun comment-or-uncomment-region-or-line ()

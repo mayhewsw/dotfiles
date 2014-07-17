@@ -11,9 +11,9 @@ if [ -f /etc/bashrc ]; then
 fi
 
 # Source local definitions
-#if [ -f ~/.bash_machine_specific ]; then
-#    . ~/.bash_machine_specific
-#fi
+if [ -f ~/.bash_machine_specific ]; then
+    . ~/.bash_machine_specific
+fi
 
 # User specific aliases and functions
 # don't put duplicate lines in the history. See bash(1) for more options
@@ -82,7 +82,7 @@ if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     alias ll='ls -la --color=auto'
     alias ls='ls --color=auto'
-    alias grep='grep --color=auto'
+    alias grep='grep --color=auto --exclude-dir=".svn"'
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
 fi
@@ -112,3 +112,5 @@ export EDITOR=emacs
 
 #export TERM=xterm-mono
 export TERM=xterm-256color
+
+export ECLIPSE_HOME=/home/mayhew2
