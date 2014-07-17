@@ -100,6 +100,7 @@ White space here is any of: space, tab, emacs newline (line feed, ASCII 10)."
 (defun getDateScore (s)
   (let ((lst (mapcar 'string-to-number (getFirst3 (split-string s (regexp-quote "."))))))
     (setcar lst (* 30 (car lst)))
+    (setcar (nthcdr 2 lst) (* 350 (car (nthcdr 2 lst))))
     (apply '+ lst)))
 
 ;; if first is later than the second, return true, otherwise nil
@@ -150,3 +151,31 @@ White space here is any of: space, tab, emacs newline (line feed, ASCII 10)."
 ;; indent pragmas in C/C++
 (c-set-offset (quote cpp-macro) 0 nil)
 
+
+;; Mark current word
+(defun my-mark-current-word (&optional arg allow-extend)
+  "Put point at beginning of current word, set mark at end."
+  (interactive "p\np")
+  (setq arg (if arg arg 1))
+  (if (and allow-extend
+           (or (and (eq last-command this-command) (mark t))
+               (region-active-p)))
+      (set-mark
+       (save-excursion
+         (when (< (mark) (point))
+           (setq arg (- arg)))
+         (goto-char (mark))
+         (forward-word arg)
+         (point)))
+    (let ((wbounds (bounds-of-thing-at-point 'word)))
+      (unless (consp wbounds)
+        (error "No word at point"))
+      (if (>= arg 0)
+          (goto-char (car wbounds))
+        (goto-char (cdr wbounds)))
+      (push-mark (save-excursion
+                   (forward-word arg)
+                   (point)))
+      (activate-mark))))
+
+(global-set-key (kbd "C-c C-w") 'my-mark-current-word)

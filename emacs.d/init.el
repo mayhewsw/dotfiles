@@ -28,6 +28,7 @@
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
+ '(org-agenda-files (quote ("~/org/cal.org" "~/org/todo.org")))
  '(show-paren-mode t)
  '(tab-width 4))
 (custom-set-faces
@@ -41,3 +42,5 @@
 ;; annoying hack for emacs in screen on ubuntu
 (global-set-key (kbd "<select>") 'end-of-line)
 
+;(ido-mode t)
+;(icomplete-mode t)
