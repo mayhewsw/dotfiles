@@ -11,10 +11,10 @@
 ; Find the function behind the command: C-h k                                   |
 ;################################################################################
 
-(add-to-list 'load-path "~/color-theme-stuff/color-theme-6.6.0")
+(add-to-list 'load-path "~/.emacs.d/color-theme-6.6.0")
 
 (setq inhibit-splash-screen t)
-(setq default-directory "/home/stephen/" )
+(setq default-directory "~" )
 (add-to-list 'load-path "~/Documents/")
 (goto-char (point-min))
 

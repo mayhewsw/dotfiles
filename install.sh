@@ -26,7 +26,14 @@ for file in $files; do
     mv ~/.$file ~/dotfiles_old/$file
     echo "Creating symlink to $file in home directory."
     ln -s $CURRENT/$file ~/.$file
+
+
 done
+
+
+wget "http://download.savannah.gnu.org/releases/color-theme/color-theme-6.6.0.tar.gz"
+tar xzvf color-theme-6.6.0.tar.gz
+mv color-theme-6.6.0/ emacs.d/
 
 # do the same for .emacs.d
 echo "Moving current .emacs.d to .emacs.d.old..."
@@ -34,3 +41,4 @@ mv ~/.emacs.d ~/.emacs.d.old
 echo "Making symlink for current version of .emacs.d..."
 ln -s $CURRENT/emacs.d ~/.emacs.d
 echo "done"
+
