@@ -107,10 +107,20 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
+function _update_ps1() {
+    PS1="$(powerline-shell $?)"
+}
+
+if [ "$TERM" != "linux" ]; then
+    PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
+fi
+
 # Set some enviroment variables
 export EDITOR=emacs
 
 #export TERM=xterm-mono
 export TERM=xterm-256color
 
-export ECLIPSE_HOME=/home/mayhew2
+
+# added by Anaconda3 installer
+export PATH="/home/mayhew/anaconda3/bin:$PATH"

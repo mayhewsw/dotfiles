@@ -18,8 +18,6 @@
 (load-user-file "cogcomp.el")
 (load-user-file "appearance.el")
 
-(add-to-list 'load-path "~/.emacs.d/")
-
 (if (locate-file "machine-specific.el" load-path)
     (load-user-file "machine-specific.el"))
 

@@ -42,3 +42,5 @@ echo "Making symlink for current version of .emacs.d..."
 ln -s $CURRENT/emacs.d ~/.emacs.d
 echo "done"
 
+echo "Installing powerline-shell..."
+pip install powerline-shell
