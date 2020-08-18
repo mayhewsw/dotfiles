@@ -9,7 +9,7 @@
 ########## Variables
 
 olddir=~/dotfiles_old             # old dotfiles backup directory
-files="bash_profile bashrc gitconfig screenrc"
+files="bash_profile bashrc gitconfig gitignore screenrc"
 
 ##########
 
@@ -26,10 +26,9 @@ for file in $files; do
     mv ~/.$file ~/dotfiles_old/$file
     echo "Creating symlink to $file in home directory."
     ln -s $CURRENT/$file ~/.$file
-
-
 done
 
+git config --global core.excludesfile ~/.gitignore
 
 wget "http://download.savannah.gnu.org/releases/color-theme/color-theme-6.6.0.tar.gz"
 tar xzvf color-theme-6.6.0.tar.gz
